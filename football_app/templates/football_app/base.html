@@ -1,41 +1,60 @@
 {% load static %}
+{% load bootstrap4 %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Football Analysis</title>
-    <!--link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
 </head>
 <body>
-    <h1>
-        <a href="{% url 'football_app:index' %}">Football Analysis App</a>
-    </h1>
-    <p>
-        <a href="{% url 'football_app:players' %}">Players</a>
-        <a href="{% url 'football_app:matches' %}">Matches</a>
-        <a href="{% url 'football_app:performances' %}">Performances</a>
-    </p>
-    <p>
-        <a href="{% url 'football_app:add_player' %}">Add Player</a>
-        <a href="{% url 'football_app:add_match' %}">Add Match</a>
-        <a href="{% url 'football_app:add_performance' %}">Add Performances</a>
-    </p>
-    <p>
-        {% if user.is_authenticated %}
-            Hello, {{ user.username }}.
-            <hr />
-            <form action="{% url 'users:logout' %}" method="post">
-                {% csrf_token %}
-                <button name="submit">Log out</button>
-            </form>
-        {% else %}
-            <a href="{% url 'users:register' %}">Register</a>
-            <a href="{% url 'users:login' %}">Log in</a>
-        {% endif %}
-    </p>
-
-    {% block content %}{% endblock content %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'football_app:index' %}">Football Analysis</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'football_app:players' %}">Players</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'football_app:matches' %}">Matches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'football_app:performances' %}">Performances</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text">Hello, {{ user.username }}!</span>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline" action="{% url 'users:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Log out</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container mt-4">
+        {% block content %}{% endblock content %}
+    </main>
 </body>
 </html>

@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "football_app"
+    "football_app",
+    "bootstrap4",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+STATICFILES_DIRS = [BASE_DIR / "static"]

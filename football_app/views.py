@@ -33,6 +33,7 @@ def performance(request, performance_id):
     performance = Performance.objects.get(id=performance_id)
     return render(request, 'football_app/performance.html', {'performance':performance})
 
+@login_required
 def add_player(request):
     if request.method != 'POST':
         form = PlayerForm()
@@ -44,6 +45,7 @@ def add_player(request):
     context = {'form':form}
     return render(request, 'football_app/add_player.html', context)
 
+@login_required
 def add_match(request):
     if request.method != 'POST':
         form = MatchForm()
@@ -55,6 +57,7 @@ def add_match(request):
     context = {'form':form}
     return render(request, 'football_app/add_match.html', context)
 
+@login_required
 def add_performance(request):
     if request.method != 'POST':
         form = PerformanceForm()
