@@ -1,0 +1,36 @@
+{% extends "football_app/base.html" %}
+
+{% block content %}
+<h1>Performance List</h1>
+
+<table>
+    <tr>
+        <th>Player</th>
+        <th>Match</th>
+        <th>Minutes</th>
+        <th>Goals</th>
+        <th>Assists</th>
+        <th>Shots</th>
+        <th>Shots on Goals</th>
+        <th>Passes Completed</th>
+        <th>Total Passes</th>
+        <th>Shot Percentage</th>
+        <th>Pass Accuracy</th>
+    </tr>
+    {% for performance in performances %}
+    <tr>
+        <td>{{ performance.player.name }}</td>
+        <td>{{ performance.match }}</td>
+        <td>{{ performance.minutes }}</td>
+        <td>{{ performance.goals }}</td>
+        <td>{{ performance.assists }}</td>
+        <td>{{ performance.shots }}</td>
+        <td>{{ performance.shots_on_goals }}</td>
+        <td>{{ performance.passes_completed }}</td>
+        <td>{{ performance.total_passes }}</td>
+        <td>{{ performance.shot_percentage }}</td>
+        <td>{{ performance.pass_accuracy }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Analysis</title>
+    <!--link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" -->
+</head>
+<body>
+    <h1>
+        <a href="{% url 'football_app:index' %}">Football Analysis App</a>
+    </h1>
+    <p>
+        <a href="{% url 'football_app:players' %}">Players</a>
+        <a href="{% url 'football_app:matches' %}">Matches</a>
+        <a href="{% url 'football_app:performances' %}">Performances</a>
+    </p>
+    <p>
+        <a href="{% url 'football_app:add_player' %}">Add Player</a>
+        <a href="{% url 'football_app:add_match' %}">Add Match</a>
+        <a href="{% url 'football_app:add_performance' %}">Add Performances</a>
+    </p>
+    <p>
+        {% if user.is_authenticated %}
+            Hello, {{ user.username }}.
+            <hr />
+            <form action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button name="submit">Log out</button>
+            </form>
+        {% else %}
+            <a href="{% url 'users:register' %}">Register</a>
+            <a href="{% url 'users:login' %}">Log in</a>
+        {% endif %}
+    </p>
+
+    {% block content %}{% endblock content %}
+</body>
+</html>

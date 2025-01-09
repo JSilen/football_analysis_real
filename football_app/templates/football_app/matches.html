@@ -1,0 +1,26 @@
+{% extends "football_app/base.html" %}
+
+{% block content %}
+<h1>Match List</h1>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Competition</th>
+        <th>Goals For</th>
+        <th>Goals Against</th>
+    </tr>
+    {% for match in matches %}
+    <tr>
+        <td>{{ match.date }}</td>
+        <td>{{ match.home_team }}</td>
+        <td>{{ match.away_team }}</td>
+        <td>{{ match.competition }}</td>
+        <td>{{ match.goals_for }}</td>
+        <td>{{ match.goals_against }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

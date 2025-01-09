@@ -1,0 +1,31 @@
+{% extends "football_app/base.html" %}
+
+{% block content %}
+<h1>Player List</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Birth Date</th>
+        <th>Position</th>
+        <th>Preferred Foot</th>
+        <th>Nationality</th>
+        <th>Team</th>
+        <th>Gender</th>
+    </tr>
+    {% for player in players %}
+    <tr>
+        <td>{{ player.name }}</td>
+        <td>{{ player.birth_date }}</td>
+        <td>{{ player.position }}</td>
+        <td>{{ player.pref_foot }}</td>
+        <td>{{ player.nationality }}</td>
+        <td>{{ player.team }}</td>
+        <td>{{ player.gender }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'football_app:add_player' %}">Add new player</a>
+
+{% endblock content %}

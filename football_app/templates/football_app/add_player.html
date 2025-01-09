@@ -1,0 +1,10 @@
+{% extends "football_app/base.html" %}
+
+{% block content %}
+  <h1>Add New Player</h1>
+  <form action="{% url 'football_app:add_player' %}" method='POST'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save Player</button>
+  </form>
+{% endblock %}
